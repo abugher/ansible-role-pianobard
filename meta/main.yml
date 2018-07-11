@@ -1,0 +1,7 @@
+---
+dependencies:
+#  - role:       'pianobar'
+#    when:       skipdeps is not defined
+  - role:       'no_systemd'
+    when:       skipdeps is not defined
+

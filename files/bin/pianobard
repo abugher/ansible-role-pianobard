@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pianobar=pianobar
+
+nohup $pianobar > /var/log/pianobard.log 2>&1 &
+pid="${!}"
+
+echo ' ' > /pianobar.control
+
+echo "${pid}"
+exit

@@ -1,0 +1,55 @@
+---
+install_packages:
+  - 'pianobar'
+create_files:
+  - owner:              'display'
+    group:              'display'
+    mode:               '0750'
+    state:              'directory'
+    path:               '/home/display/.config/pianobar'
+install_files:
+  - owner:              'root'
+    group:              'root'
+    mode:               '0640'
+    src:                "{{ role_path }}/files/libao.conf"
+    dest:               '/etc/libao.conf'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/init.d/pianobar"
+    dest:               '/etc/init.d/pianobar'
+  - owner:              'root'
+    group:              'root'
+    mode:               '0755'
+    src:                "{{ role_path }}/files/bin/pianobard"
+    dest:               '/usr/local/bin/pianobard'
+symlinks:
+  - owner:              'display'
+    group:              'display'
+    src:                '/etc/pianobard/config'
+    dest:               '/home/display/.config/pianobar/config'
+commands:
+  - command:            mkfifo '/pianobar.control'
+    user:               'root'
+    chdir:              '/'
+    creates:            '/pianobar.control'
+adjust_files:
+  - owner:              'www-data'
+    group:              'display'
+    mode:               '0664'
+    path:               '/pianobar.control'
+initialize_files:
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    dest:               '/var/log/pianobard.log'
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    dest:               '/var/log/pianobard.ret'
+enable_services:
+  - 'pianobar'
+start_services:
+  - 'pianobar'
+restart_services:
+  - 'pianobar'
