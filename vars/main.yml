@@ -12,6 +12,16 @@ create_files:
     mode:               '0750'
     state:              'directory'
     path:               '/home/display/.config/pianobar'
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    state:              'touch'
+    path:               '/var/log/pianobard.log'
+  - owner:              'display'
+    group:              'display'
+    mode:               '0644'
+    state:              'touch'
+    path:               '/var/log/pianobard.ret'
 install_files:
   - owner:              'www-data'
     group:              'display'
@@ -57,15 +67,6 @@ adjust_files:
     group:              'display'
     mode:               '0664'
     path:               '/pianobar.control'
-initialize_files:
-  - owner:              'display'
-    group:              'display'
-    mode:               '0644'
-    dest:               '/var/log/pianobard.log'
-  - owner:              'display'
-    group:              'display'
-    mode:               '0644'
-    dest:               '/var/log/pianobard.ret'
 enable_services:
   - 'pianobar'
 start_services:
