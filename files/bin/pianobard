@@ -5,7 +5,11 @@ pianobar=pianobar
 nohup $pianobar > /var/log/pianobard.log 2>&1 &
 pid="${!}"
 
-echo ' ' > /pianobar.control
+# If pianobar fails, this write hangs, so put a time limit on it.
+echo ' ' > /pianobar.control &
+control_pid="${!}"
+sleep 1
+kill "${control_pid}"
 
 echo "${pid}"
 exit
