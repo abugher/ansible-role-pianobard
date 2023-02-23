@@ -1,4 +1,6 @@
 ---
+dependencies:
+  - 'display'
 install_packages:
   - 'pianobar'
 create_files:
